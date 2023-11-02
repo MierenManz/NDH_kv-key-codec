@@ -14,13 +14,17 @@ console.log(packed)
 console.log(unpackKey(packed))
 // [ "user", 1 ]
 ```
-I've provided the Typescript code in the `./src/` folder, as well as a bundled/minified browser compatible version **kvKeyCodec.js** in the root.   
+I've provided the Typescript source code in the **_./src/_** folder.    
+A bundled/minified browser compatible version is in **_/dist/kvKeyCodec.js_**.     
+The **_/dist/index.html_** will exercise the above js version.   
 
-The included `index.html` file exercises the browser version.   
- 
+### Testing:
+A full test set can be found in both **_./KeySet_test.ts_**, and in **_./testKeySet.ts_**.    
+The expected values were taken from DenoKv-key-codec source.    
+These values were then validated by setting and examining keys in a local DenoKv SQLite file.
 <br/>
 
-## about this codec
+## About this codec
 In order to support FoundationDB in Deploy, Deno adopted the FDB-Tuple encoding format for KvKeys. This is a dynamically typed binary format. Its kind of like JSON, but it's binary and doesn't support associative objects.   
 
 This format has some distinct advantages compared to json or msgpack when encoding the keys of a key-value database like DenoKv.
@@ -29,16 +33,18 @@ This format is not specific to FoundationDB nor DenoKv. It can be used in many o
 
 The specification for the FDB-Tuple encoding format itself is [documented here](https://github.com/apple/foundationdb/blob/master/design/tuple.md). 
 
-The deno specific kv-codec can be gleened from the rust source:
-https://github.com/denoland/deno/blob/main/ext/kv/codec.rs
+The deno specific kv-codec can be gleened from the rust source code at:    
+https://github.com/denoland/denokv/blob/main/proto/codec.rs
     
-Note: DenoKv uses a subset of this spec. (see `Valid KvKeyParts` below)
+### Note: 
+DenoKv uses a subset of the above FDB specification. (see `Valid KvKeyParts` below)    
+The **_./src/doubleCodec.ts_** may seem overkill, but is correct, and supports older browsers.    
 
 ## API
-This library has only two public methods - **packKey** and **unpackKey**.   
+This library provides only two public methods - **pack** and **unpack**.   
 
-### packKey(key: KvKey) -> Buffer
-Pack the specified KvKey into a buffer. a buffer is returned.    
+### pack(key: KvKey) -> Buffer
+Pack the specified KvKey into a buffer. A Uint8Array buffer is returned.    
 The key param must be a valid Deno.KvKey - an array of Deno.KvKeyParts.
 
 Valid KvKeyParts are:
@@ -49,7 +55,7 @@ Valid KvKeyParts are:
 - Boolean false
 - Boolean true
 
-### unpackKey(val: Buffer) -> KvKey
+### unpack(val: Uint8Array) -> KvKey
 Unpacks the values in a buffer back into an array of KvKeyParts.   
 A KvKey is returned.
 
