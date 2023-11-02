@@ -6,12 +6,12 @@ app.ts
 ```javascript
 import { pack, unpack } from './src/mod.ts'
 
-const packed = packKey([ "user", 1 ])
+const packed = pack([ "user", 1 ])
 
 console.log(packed) 
 // returns - [2,117,115,101,114,0,33,191,240,0,0,0,0,0,0]
 
-console.log(unpackKey(packed))
+console.log(unpack(packed))
 // [ "user", 1 ]
 ```
 I've provided the Typescript source code in the **_./src/_** folder.    
