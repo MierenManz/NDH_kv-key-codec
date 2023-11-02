@@ -5,7 +5,7 @@ const kvKeyInput = $("keyinput")
 const encodeButton = $("encodebtn")
 const resultElement = $("result")
 
-kvKeyInput.textContent = '["app", "users", 1]'
+kvKeyInput.textContent = '["app", "users", 1, true]'
 kvKeyInput.addEventListener("input", (e) => {
    console.info(e)
 }) 
