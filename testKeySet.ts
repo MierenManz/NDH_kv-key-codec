@@ -7,6 +7,15 @@ const trueBigInt = 9007199254740992n
 //           test keys
 //======================================
 
+// non array pack test
+// string 
+export const NotAnArray = { 
+   name: 'String', 
+   key: "Foo", 
+   expect: `[2,70,111,111,0]` 
+}
+
+
 // raw byte key
 export const Bytes = { 
    name: 'Raw Bytes', 

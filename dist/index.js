@@ -1,27 +1,28 @@
 
 import { pack } from './kvKeyCodec.js'
 const $ = (id) => document.getElementById(id)
-const keyInput = $("inp")
-const btn = $("btn")
-const pre = $("pre")
+const kvKeyInput = $("keyinput")
+const encodeButton = $("encodebtn")
+const resultElement = $("result")
 
-keyInput.textContent = '["user", 1]'
-keyInput.addEventListener("input", (e) => {
+kvKeyInput.textContent = '["app", "users", 1]'
+kvKeyInput.addEventListener("input", (e) => {
    console.info(e)
 }) 
 
-btn.onclick = () => {
-   const key = parseInput()
+encodeButton.onclick = () => {
+   resultElement.textContent =''
+   const key = parseKeyInput()
    const encoded = pack(key)
-   pre.textContent += `
-Encoded = ${encoded}`
+   resultElement.textContent += `
+Encodes to: ${encoded}`
 }
 
-function parseInput() {
-   const val = JSON.parse(keyInput.value)
+function parseKeyInput() {
+   const val = JSON.parse(kvKeyInput.value)
    console.info(val)
-   pre.textContent += `
-${val} type ${typeof val }`
+   resultElement.textContent += `
+[${val}]`
    return (Array.isArray(val))
    ? val
    : []

@@ -1,7 +1,7 @@
 
 import { assertEquals } from "https://deno.land/std@0.204.0/assert/mod.ts";
-import { pack } from './src/keyEncoder.ts';
-import { unpack } from './src/keyDecoder.ts';
+import { pack } from './src/encoder.ts';
+import { unpack } from './src/decoder.ts';
 
 //======================================
 //  buffer and string keys

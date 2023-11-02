@@ -2,7 +2,7 @@
 import { KeyPart } from './types.ts'
 import { encodeBigInt, isBigInt } from './bigIntCodec.ts'
 import { encodeDouble } from './doubleCodec.ts'
-import { Accumulator }  from './mod.ts'
+import { Accumulator }  from './accumulator.ts'
 
 
 import {
@@ -86,12 +86,14 @@ function packRawKey(part: KeyPart[]): Uint8Array {
 }
 
 /**
+ * pack() -- the main entry point
  * Encode the specified item or array of items into a buffer.
- * pack() and unpack() are the main entry points
  * `pack(x)` is equivalent to `pack([x])` if x is not itself an array. 
  * Packing single items this way is also slightly more efficient.
  */
-export function pack(parts: KeyPart[]): Uint8Array {
+export function pack(parts: KeyPart | KeyPart[]): Uint8Array {
+   // converts a single part to an array
+   if (!Array.isArray(parts)) parts = [parts]
    const packedKey = packRawKey(parts)
    return packedKey
 }

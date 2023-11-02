@@ -26,13 +26,9 @@
    the encoding for an integer and a bigint. Any integer inside the JS safe
    range for a number will be decoded to a 'double' rather than a 'bigint'.
 */
+
 /** exports pack - a DenoKv Key encoder */
-export * from './keyEncoder.ts'
+export * from './encoder.ts'
 
-/** exports unpack - a a DenoKv Key decoder */
-export * from './keyDecoder.ts'
-
-/** this codec uses Accumulator for efficient buffering */
-export  { Accumulator }  from './accumulator.ts'
-//export  { Accumulator }  from https://raw.githubusercontent.com/nhrones/Accumulator/main/accumulator.ts'
-//export  *  from 'https://github.com/nhrones/Accumulator/blob/main/accumulator.ts'
+/** exports unpack - a DenoKv Key decoder */
+export * from './decoder.ts'
