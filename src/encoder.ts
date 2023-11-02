@@ -2,7 +2,7 @@
 import { KeyPart } from './types.ts'
 import { encodeBigInt, isBigInt } from './bigIntCodec.ts'
 import { encodeDouble } from './doubleCodec.ts'
-import { Accumulator }  from './accumulator.ts'
+import { Accumulator }  from './mod.ts'
 
 
 import {

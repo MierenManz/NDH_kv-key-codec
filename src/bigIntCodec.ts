@@ -1,4 +1,4 @@
-import { Accumulator }  from './accumulator.ts'
+import { Accumulator }  from './mod.ts'
 import * as CODE from './types.ts'
 
 //====================================

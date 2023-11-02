@@ -2,7 +2,7 @@
 import { TYPE_CODE, KeyPart } from './types.ts'
 import { decodeBigInt } from './bigIntCodec.ts'
 import { decodeDouble } from './doubleCodec.ts'
-import {Accumulator} from './accumulator.ts'
+import { Accumulator } from './mod.ts'
 
 import {
    BYTES,
