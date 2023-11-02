@@ -1,0 +1,38 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+      {
+         "type": "shell",
+         "command": "run app",
+         "problemMatcher": [
+            "$deno"
+         ],
+         "label": "RUN"
+      },
+      {
+         "type": "shell",
+         "command": "build",
+         "problemMatcher": [
+            "$deno"
+         ],
+         "label": "BUILD"
+      },
+      {
+         "type": "shell",
+         "command": "serve",
+         "problemMatcher": [
+            "$deno"
+         ],
+         "label": "SERVE"
+      },
+      {
+         "type": "deno",
+         "command": "test",
+         "problemMatcher": [
+            "$deno-test"
+         ],
+         "group": "test",
+         "label": "TEST"
+      }
+   ]
+}

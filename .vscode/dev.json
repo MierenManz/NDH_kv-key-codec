@@ -1,0 +1,14 @@
+{
+   "simple": {
+      "TargetFolder": "dist",
+      "Port": 80
+   },
+   "build": {
+      "Out": "dist",
+      "FileName": "kvKeyCodec.js",
+      "Entry": [
+         "./src/mod.ts"
+      ],
+      "Minify": true
+   }
+}
