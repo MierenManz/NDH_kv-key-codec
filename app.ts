@@ -10,7 +10,9 @@ const testKey = TestKey.NotAnArray
 // we'll encode, then decode this test key
 const packed = pack(testKey.key) 
 const unpacked = unpack(packed)
+
 if (Array.isArray(testKey.key)) testKey.key = `[${testKey.key}]`
+
 // we'll next report the test results
 console.log (`encoding ${testKey.name} - ${testKey.key}
 returned - [${packed}]
