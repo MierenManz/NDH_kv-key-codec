@@ -6,10 +6,10 @@ app.ts
 ```javascript
 import { pack, unpack } from './src/mod.ts'
 
-const packed = pack([ "user", 1 ])
+const packed = pack(["app", "users", 1, true])
 
 console.log(packed) 
-// returns - [2,117,115,101,114,0,33,191,240,0,0,0,0,0,0]
+// returns - [2,97,112,112,0,2,117,115,101,114,115,0,33,191,240,0,0,0,0,0,0,39]
 
 console.log(unpack(packed))
 // [ "user", 1 ]
