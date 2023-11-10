@@ -4,7 +4,7 @@ import { pack, unpack } from './src/mod.ts'
 import * as TestKey from './testKeySet.ts'
 
 /** set this to the test key to be tested */
-const testKey = TestKey.NotAnArray
+const testKey = TestKey.MultiPart
 
 // then,    deno run app.ts
 // we'll encode, then decode this test key
