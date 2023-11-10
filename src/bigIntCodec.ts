@@ -1,5 +1,5 @@
-import { Accumulator }  from './mod.ts'
-import * as CODE from './types.ts'
+import { Accumulator }  from './deps.ts'
+import * as TYPE from './types.ts'
 
 //====================================
 //            Encode 
@@ -11,7 +11,7 @@ export const encodeBigInt = (accumulator: Accumulator, item: bigint) => {
    if (typeof item === 'bigint') {
       const biZero = BigInt(0)
       if (item === biZero) {
-         accumulator.appendByte(CODE.INTZERO)
+         accumulator.appendByte(TYPE.INTZERO)
       }
       else {
          const isNeg = item < biZero
@@ -27,10 +27,10 @@ export const encodeBigInt = (accumulator: Accumulator, item: bigint) => {
          }
 
          if (len <= 8) {
-            accumulator.appendByte(CODE.INTZERO + (isNeg ? -len : len))
+            accumulator.appendByte(TYPE.INTZERO + (isNeg ? -len : len))
          }
          else if (len < 256) {
-            accumulator.appendByte(isNeg ? CODE.NEGINTSTART : CODE.POSINTEND)
+            accumulator.appendByte(isNeg ? TYPE.NEGINTSTART : TYPE.POSINTEND)
             accumulator.appendByte(isNeg ? len ^ 0xff : len)
          }
          accumulator.appendBuffer(rawBytes)
@@ -48,11 +48,11 @@ export const encodeBigInt = (accumulator: Accumulator, item: bigint) => {
 /** decode BigInt */
 export function decodeBigInt(buf: Uint8Array, pos: { p: number }, code: number) {
    const { p } = pos
-   if (code >= CODE.NEGINTSTART && code <= CODE.POSINTEND) {
-      const byteLen = code - CODE.INTZERO
+   if (code >= TYPE.NEGINTSTART && code <= TYPE.POSINTEND) {
+      const byteLen = code - TYPE.INTZERO
       const absByteLen = Math.abs(byteLen)
       pos.p += absByteLen
-      if (code === CODE.INTZERO) return 0;
+      if (code === TYPE.INTZERO) return 0;
       return decodeIt(buf, p, absByteLen, byteLen < 0)
    } else {
       throw new TypeError(`Invalid tuple data: code ${code} ('${buf}' at ${pos})`)

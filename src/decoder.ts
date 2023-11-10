@@ -2,7 +2,7 @@
 import { TYPE_CODE, KeyPart } from './types.ts'
 import { decodeBigInt } from './bigIntCodec.ts'
 import { decodeDouble } from './doubleCodec.ts'
-import { Accumulator } from './mod.ts'
+import { Accumulator } from './deps.ts'
 
 import {
    BYTES,
@@ -65,8 +65,8 @@ function decodeKey(
             accumulator.appendByte(byte)
          }
          pos.p = p + 1 // eats our trailing null byte 
-         const dec = new TextDecoder("utf-8")
-         return dec.decode(accumulator.extract().buffer)
+         const decoder = new TextDecoder("utf-8")
+         return decoder.decode(accumulator.extract().buffer)
       }
 
       case DOUBLE: {

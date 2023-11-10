@@ -2,17 +2,8 @@
 import { KeyPart } from './types.ts'
 import { encodeBigInt, isBigInt } from './bigIntCodec.ts'
 import { encodeDouble } from './doubleCodec.ts'
-import { Accumulator }  from './mod.ts'
-
-
-import {
-   BYTES,
-   DOUBLE,
-   FALSE,
-   TRUE,
-   NULL,
-   STRING,
-} from './types.ts'
+import { Accumulator }  from './deps.ts'
+import * as TYPE  from './types.ts'
 
 
 //===========================================
@@ -25,25 +16,25 @@ import {
 const encodeKey = (accumulator: Accumulator, item: KeyPart) => {
 
    if (item === undefined) throw new TypeError('Packed element cannot be undefined')
-   else if (item === null) accumulator.appendByte(NULL)
-   else if (item === false) accumulator.appendByte(FALSE)
-   else if (item === true) accumulator.appendByte(TRUE)
+   else if (item === null) accumulator.appendByte(TYPE.NULL)
+   else if (item === false) accumulator.appendByte(TYPE.FALSE)
+   else if (item === true) accumulator.appendByte(TYPE.TRUE)
    else if (item.constructor === Uint8Array || typeof item === 'string') {
 
-      let itemBuf 
+      let itemBuf: Uint8Array 
       if (typeof item === 'string') {
          itemBuf = new TextEncoder().encode(item)
-         accumulator.appendByte(STRING)
+         accumulator.appendByte(TYPE.STRING)
       }
       else {
          itemBuf = item
-         accumulator.appendByte(BYTES)
+         accumulator.appendByte(TYPE.BYTES)
       }
       
       for (let i = 0; i < itemBuf.length; i++) {
          const val = itemBuf[i]
          accumulator.appendByte(val)
-         if (val === 0)
+         if (val === 0) // escape zeros
             accumulator.appendByte(0xff)
       }
       accumulator.appendByte(0)
@@ -51,12 +42,9 @@ const encodeKey = (accumulator: Accumulator, item: KeyPart) => {
    } else if (Array.isArray(item)) {
       // Embedded child tuple.
       throw new Error('Nested Tuples are not supported!')
-
    } else if (typeof item === 'number') {
       // Encode as a double precision float.
-      accumulator.appendByte(DOUBLE)
-      accumulator.appendBuffer(encodeDouble(item))
-
+      encodeDouble(accumulator, item)
    } else if (isBigInt(item)) {
       // Encode as a BigInt
       encodeBigInt(accumulator, item as bigint)

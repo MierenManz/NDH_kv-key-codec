@@ -32,6 +32,3 @@ export * from './encoder.ts'
 
 /** exports unpack - a DenoKv Key decoder */
 export * from './decoder.ts'
-
-/** exports the Accumulator class */
-export {Accumulator } from 'https://raw.githubusercontent.com/nhrones/Accumulator/main/accumulator.ts'

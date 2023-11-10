@@ -1,13 +1,15 @@
+import { Accumulator } from "./deps.ts";
+import { DOUBLE } from './types.ts'
 const ENCODING = true
 const DECODING = false
 
 /** encode double */
-export function encodeDouble(num: number) {
+export function encodeDouble(accumulator: Accumulator, num: number) {
+   accumulator.appendByte(DOUBLE)
    const buf = new Uint8Array(8)
    writeDoubleBE(buf, num, 0)
-   return adjustFloat(buf, ENCODING)
+   accumulator.appendBuffer(adjustFloat(buf, ENCODING))
 }
-
 /** 
  * decode double
  */
