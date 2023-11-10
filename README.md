@@ -2,7 +2,7 @@
 
 This is an encoder and decoder for the Deno-Kv multipart key format (FDB-Tuple).
 
-app.ts
+## Example
 ```javascript
 import { pack, unpack } from './src/mod.ts'
 
