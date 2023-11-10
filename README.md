@@ -12,7 +12,7 @@ console.log(packed)
 // returns - [2,97,112,112,0,2,117,115,101,114,115,0,33,191,240,0,0,0,0,0,0,39]
 
 console.log(unpack(packed))
-// [ "user", 1 ]
+// ["app", "users", 1, true]
 ```
 I've provided the Typescript source code in the **_./src/_** folder.    
 A bundled/minified browser compatible version is in **_/dist/kvKeyCodec.js_**.     
