@@ -18,7 +18,6 @@ I've provided the Typescript source code in the **_./src/_** folder.
 A bundled/minified browser compatible version is in **_/dist/kvKeyCodec.js_**.     
 The **_./index.html_** will exercise the above js version. 
 
-### Try it: https://nhrones.github.io/kv-key-codec/ 
 
 ### Testing:
 A full test set can be found in both **_./KeySet_test.ts_**, and in **_./testKeySet.ts_**.    
